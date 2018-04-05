@@ -6,6 +6,19 @@
         <link rel="stylesheet" href="main.css">
     </head>
     <body>
-        <webview src="https://web.threema.ch/" class="webview" autosize="on"></webview>
+        <webview src="https://web.threema.ch/" class="webview" autosize="on" id="webview"></webview>
+
+        <script>
+            const ipc = require('electron').ipcRenderer;
+            const webview = document.getElementById("webview");
+            webview.addEventListener("new-window", (e) => {
+                event.preventDefault();
+                ipc.send("webview-navigate", e.url);
+            });
+
+            webview.addEventListener("will-navigate", (url) => {
+                ipc.send("webview-navigate", url)
+            });
+        </script>
     </body>
 </html>

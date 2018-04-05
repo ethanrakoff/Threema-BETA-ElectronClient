@@ -1,11 +1,19 @@
 const {app, Tray, Menu, BrowserWindow} = require('electron');
+const open = require('open');
 const path = require('path');
 const url = require('url');
+const shell = require('electron').shell;
+const ipc = require("electron").ipcMain;
 
 let mainWindow;
 let isQuitting = false;
 let iconPath = path.join(__dirname, 'favicon.ico');
 let tray = null;
+
+function handleRedirect(event, url) {
+    event.preventDefault();
+    open(url);
+}
 
 function createTray() {
     tray = new Tray(iconPath);
@@ -41,6 +49,9 @@ function createWindow() {
         event.preventDefault();
         mainWindow.hide();
     });
+
+    mainWindow.webContents.on('new-window', handleRedirect);
+    mainWindow.webContents.on('will-navigate', handleRedirect);
 }
 
 app.on('ready', function() {
@@ -57,5 +68,27 @@ app.on('window-all-closed', function () {
 app.on('activate', function () {
     if (mainWindow === null) {
         createWindow()
+    }
+});
+
+function getLocation(href) {
+    let match = href.match(/^(https?\:)\/\/(([^:\/?#]*)(?:\:([0-9]+))?)([\/]{0,1}[^?#]*)(\?[^#]*|)(#.*|)$/);
+    return match && {
+        href: href,
+        protocol: match[1],
+        host: match[2],
+        hostname: match[3],
+        port: match[4],
+        pathname: match[5],
+        search: match[6],
+        hash: match[7]
+    }
+}
+
+ipc.on('webview-navigate', function(event, url) {
+    let protocol = getLocation(url).protocol;
+
+    if (protocol === 'http:' || protocol === 'https:') {
+        shell.openExternal(url)
     }
 });
