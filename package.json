@@ -11,10 +11,10 @@
     "license": "MIT",
     "devDependencies": {
         "electron": "^1.8.3",
-        "electron-packager": "^11.0.1",
-        "open": "^0.0.5"
+        "electron-packager": "^11.0.1"
     },
     "dependencies": {
-        "npm": "^5.8.0"
+        "npm": "^5.8.0",
+        "open": "^0.0.5"
     }
 }
