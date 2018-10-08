@@ -6,9 +6,9 @@
 
 ```bash
 # Clone this repository
-git clone https://github.com/Auuharakuumn/ThreemaElectronClient
+git clone https://github.com/ethanrakoff/Threema-BETA-ElectronClient.git
 # Go into the repository
-cd ThreemaElectronClient
+cd Threema-BETA-ElectronClient
 # Install dependencies
 npm install
 # Run the app
