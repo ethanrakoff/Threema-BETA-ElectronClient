@@ -3,7 +3,8 @@ const open = require('open');
 const path = require('path');
 const url = require('url');
 const shell = require('electron').shell;
-const ipc = require("electron").ipcMain;
+const ipc = require('electron').ipcMain;
+const nativeImage = require('electron').nativeImage;
 
 let mainWindow;
 let isQuitting = false;
@@ -16,7 +17,7 @@ function handleRedirect(event, url) {
 }
 
 function createTray() {
-    tray = new Tray(iconPath);
+    tray = new Tray(nativeIcon.createFromPath(iconPath));
 
     let contextMenu = Menu.buildFromTemplate([
         {label: 'Show App', click: function () {
@@ -29,8 +30,8 @@ function createTray() {
     ]);
 
     tray.setContextMenu(contextMenu);
-    tray.setToolTip("Electron Threema Wrapper");
-    tray.setTitle("Threema");
+    tray.setToolTip('Electron Threema Wrapper');
+    tray.setTitle('Threema');
 }
 
 function createWindow() {
