@@ -10,11 +10,11 @@
     "author": "mfoley",
     "license": "MIT",
     "devDependencies": {
-        "electron": "^1.8.3",
-        "electron-packager": "^11.0.1"
+        "electron": "^3.0.3",
+        "electron-packager": "^12.2.0"
     },
     "dependencies": {
-        "npm": "^5.8.0",
+        "npm": "^6.4.1",
         "open": "^0.0.5"
     }
 }
