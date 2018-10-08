@@ -17,7 +17,7 @@ function handleRedirect(event, url) {
 }
 
 function createTray() {
-    tray = new Tray(nativeIcon.createFromPath(iconPath));
+    tray = new Tray(nativeImage.createFromPath(iconPath));
 
     let contextMenu = Menu.buildFromTemplate([
         {label: 'Show App', click: function () {
@@ -36,6 +36,7 @@ function createTray() {
 
 function createWindow() {
     mainWindow = new BrowserWindow({width: 800, height: 800, icon: iconPath});
+    mainWindow.setMenu(null)
     mainWindow.loadURL(url.format({
         pathname: path.join(__dirname, 'index.html'),
         protocol: 'file:',
