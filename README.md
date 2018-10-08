@@ -1,3 +1,5 @@
+# NOTE: This is for the BETA version of Threema Web. If that doesn't mean anything to you, you probably want to look at the upstream version.
+
 # Threema Electron Client
 
 ## To Use
