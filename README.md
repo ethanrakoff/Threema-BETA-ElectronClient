@@ -1,5 +1,3 @@
-# NOTE: This is for Threema Web BETA. If that doesn't mean anything to you, you probably want the main branch.
-
 # Threema Electron Client
 
 ## To Use
