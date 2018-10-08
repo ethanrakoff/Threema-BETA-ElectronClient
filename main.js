@@ -1,5 +1,5 @@
 const {app, Tray, Menu, BrowserWindow} = require('electron');
-const open = require('open');
+const opn = require('opn');
 const path = require('path');
 const url = require('url');
 const shell = require('electron').shell;
@@ -13,7 +13,7 @@ let tray = null;
 
 function handleRedirect(event, url) {
     event.preventDefault();
-    open(url);
+    opn(url);
 }
 
 function createTray() {
